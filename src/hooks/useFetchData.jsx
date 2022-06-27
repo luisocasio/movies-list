@@ -4,7 +4,6 @@ const useFetchData = async (searchMovie) => {
       `https://www.omdbapi.com/?t=${searchMovie}&${import.meta.env.VITE_APIKEY}`
     );
     let data = await response.json();
-    console.log("data: ", data);
     return data;
   } catch (error) {
     console.error("Error: ", error);
