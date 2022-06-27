@@ -4,9 +4,9 @@ import MovieCard from "./components/MovieCard";
 import SearchMovie from "./components/SearchMovie";
 
 function App() {
-  const [movie, setMovie] = useState("scarface");
+  const [movie, setMovie] = useState("thor");
   const [data, setData] = useState(null);
-  console.log("Init", data);
+  const [savedMovie, setSavedMovie] = useState(null);
 
   useEffect(() => {
     try {
@@ -28,6 +28,18 @@ function App() {
     }
   }
 
+  function onSaveMovie(data) {
+    if (!data) {
+      return;
+    } else {
+      setSavedMovie((prevState) => {
+        return {
+          ...data,
+        };
+      });
+    }
+  }
+
   return (
     <div className="App">
       <div className="search-wrapper">
@@ -36,16 +48,15 @@ function App() {
       {!data ? (
         <p>Loading...</p>
       ) : (
-        <MovieCard
-          title={data.Title}
-          director={data.Director}
-          rated={data.Rated}
-          released={data.Released}
-          runtime={data.Runtime}
-          boxOffice={data.BoxOffice}
-          plot={data.Plot}
-          poster={data.Poster}
-        />
+        <>
+          <MovieCard data={data} onSaveMovie={onSaveMovie} />
+        </>
+      )}
+
+      {savedMovie === null ? (
+        <p>No movies saved...</p>
+      ) : (
+        <p>{savedMovie.title}</p>
       )}
     </div>
   );
