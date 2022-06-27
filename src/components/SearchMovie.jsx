@@ -11,7 +11,7 @@ const SearchMovie = ({ onSubmitMovieSearch }) => {
     e.preventDefault();
     // Do something here...
     onSubmitMovieSearch(searchMovie);
-    searchMovie("");
+    setSearchMovie("");
   }
 
   return (

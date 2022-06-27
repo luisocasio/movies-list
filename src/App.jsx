@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import useFetchData from "./hooks/useFetchData";
+import Nav from "./components/Nav/Nav";
 import MovieCard from "./components/MovieCard";
-import SearchMovie from "./components/SearchMovie";
 
 function App() {
   const [movie, setMovie] = useState("thor");
@@ -42,9 +42,8 @@ function App() {
 
   return (
     <div className="App">
-      <div className="search-wrapper">
-        <SearchMovie onSubmitMovieSearch={onSubmitMovieSearch} />
-      </div>
+      <Nav onSubmitMovieSearch={onSubmitMovieSearch} />
+
       {!data ? (
         <p>Loading...</p>
       ) : (
